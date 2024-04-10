@@ -7,7 +7,7 @@ const { getOrderById } = require("./database.js");
 const { getOrdersByEmail } = require("./database");
 
 // Define a route for '/order/:orderId'
-app.get("/order/:orderId", (req, res) => {
+app.get("/orderid/:orderId", (req, res) => {
   const orderId = parseInt(req.params.orderId);
 
   // Call getOrderById function to retrieve order details
