@@ -2,21 +2,22 @@
 
 const orders = [
   {
-    orderId: 67,
+    orderId1: 67,
     emailAddress: "kishore@iconnectsolutions.com",
-    imageURL: "https://example.com/image67.jpg",
-    title: "Product A",
+    imageURL:
+      "https://allure-website.iconnectsolutions.com/wp-content/uploads/2016/11/product-6-400x400.jpg",
+    title: "Exclusive Fit 3pc Dark Blue Suit",
     deliveryDate: "2024-04-15",
   },
   {
-    orderId: 73,
+    orderId2: 73,
     emailAddress: "kishore@iconnectsolutions.com",
     imageURL: "https://example.com/image73.jpg",
     title: "Product B",
     deliveryDate: "2024-04-18",
   },
   {
-    orderId: 75,
+    orderId3: 75,
     emailAddress: "kishore@iconnectsolutions.com",
     imageURL: "https://example.com/image75.jpg",
     title: "Product C",
