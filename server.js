@@ -1,41 +1,27 @@
+// server.js - Express server
+
 const express = require("express");
+const { getOrdersByEmail, getOrderById } = require("./data"); // Import database functions
 const app = express();
 const PORT = 3000;
 
-// Import the getOrderById function from database.js
-const { getOrderById } = require("./database.js");
-const { getOrdersByEmail } = require("./database");
+app.use(express.json());
 
-// Define a route for '/order/:orderId'
-app.get("/orderid/:orderId", (req, res) => {
-  const orderId = parseInt(req.params.orderId);
-
-  // Call getOrderById function to retrieve order details
-  const order = getOrderById(orderId);
-
-  if (!order) {
-    // If order not found, return 404 Not Found
-    return res.status(404).json({ error: "Order not found" });
-  }
-
-  // If order found, return order details in JSON response
-  res.json(order);
+// Endpoint to filter orders by email address
+app.get("/ordersByEmail/:emailAddress", (req, res) => {
+  const { emailAddress } = req.params;
+  const filteredOrders = getOrdersByEmail(emailAddress);
+  res.json(filteredOrders);
 });
 
-// Define a route for '/orders/:emailAddress'
-app.get("/orders/:emailAddress", (req, res) => {
-  const emailAddress = req.params.emailAddress;
-
-  // Call getOrdersByEmail function to retrieve orders by emailAddress
-  const orders = getOrdersByEmail(emailAddress);
-
-  if (orders.length === 0) {
-    // If no orders found for the given emailAddress, return an empty array
-    return res.json({ message: "No orders found for this email address" });
+// Endpoint to get order details by order ID
+app.get("/orderById/:orderId", (req, res) => {
+  const { orderId } = req.params;
+  const order = getOrderById(orderId);
+  if (!order) {
+    return res.status(404).json({ message: "Order not found" });
   }
-
-  // If orders found, return orders in JSON response
-  res.json(orders);
+  res.json(order);
 });
 
 // Start the server
